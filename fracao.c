@@ -1,7 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
-#include <conio.h>
 
 int main(int argc, char const *argv[])
 {
@@ -24,7 +23,7 @@ int main(int argc, char const *argv[])
 
 	printf ("\n A fracao e: %f ",fracao);
 
-	getch();
+	getchar();
 
 	return 0;
 }

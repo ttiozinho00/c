@@ -1,5 +1,5 @@
 
-#include <conio.h>   /* getche 	 */
+//#include <conio.h>   /* getche 	 */
 #include <stdio.h>   /* printf() */
 #include <stdlib.h> /*system()*/
  	 
@@ -36,7 +36,7 @@ int main(int argc, char *argv[])
 	
 	for (i = 0; i <= 8; i++) 
 	{
-		digito_cpf = getche() - '0'; /* Convertendo o caracter i para o digito i */
+		digito_cpf = getchar() - '0'; /* Convertendo o caracter i para o digito i */
 		soma_digito_1 = soma_digito_1 + digito_cpf * (i + 1);
 		soma_digito_2 = soma_digito_2 + digito_cpf * i;
 	}

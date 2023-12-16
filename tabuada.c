@@ -3,23 +3,22 @@
 
 int main(int argc, char const *argv[])
 {
-	system("cls");
+    // Use system("clear") for Unix/Linux or system("clear || cls") for a cross-platform solution
+    system("cls");
 
-	argv=argv;
-	argc=argc;
+    // Unused arguments, so assigning them to themselves to avoid warnings
+    argv = argv;
+    argc = argc;
 
-	int i;
-	int j;
+    int j; // Change the loop variable to 'j'
 
-	printf("Informe o valor:\n");
-	scanf("%d",&i);
+    printf("Informe o valor:\n");
+    scanf("%d", &j); // Change the variable to 'j'
 
-	for (i=0;j<10;i++)
-	{
-		printf("%s\n", );
-	}
+    for (j = 0; j < 10; j++) // Fix the loop condition and variable
+    {
+        printf("%d\n", j);
+    }
 
-
-
-	return 0;
+    return 0;
 }

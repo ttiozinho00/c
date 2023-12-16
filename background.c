@@ -10,7 +10,7 @@ int main(int argc, char const *argv[])
 	argv=argv;
 	argc=argc;
 
-	if ((0, 0)) 
+	if ((0.0)) 
 	{
         printf("Erro indo para background.\n");
         return 1;
@@ -21,3 +21,4 @@ int main(int argc, char const *argv[])
     sleep(10);
 	return 0;
 }
+

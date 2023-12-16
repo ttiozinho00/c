@@ -1,4 +1,3 @@
-#include <conio.h>
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -34,7 +33,7 @@ int main(int argc, char const *argv[])
   
   	free(v);
   
-  	getch();
+  	getchar();
 
 	return 0;
 }

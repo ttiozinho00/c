@@ -6,8 +6,8 @@
 
 int main(int argc, char const *argv[])
 {
-    system("cls");
-    setlocale(LC_ALL,"");
+    system("cls || clear");
+    setlocale(LC_ALL, NULL);
 
     argv=argv;
     argc=argc;

@@ -70,9 +70,9 @@ void incluir(void)
 	}
 
 	printf("\nNome: ");
-	gets(p.nome);
+	fgets(p.nome, sizeof(p.nome), stdin);
 	printf("Fone:");
-	gets(p.fone);
+	fgets(p.fone, sizeof(p.fone), stdin);
 	fwrite (&p, sizeof(pessoa),1 ,s);
 	printf("\nRegistro gravado!!!\n");
 	fclose(s);
@@ -99,7 +99,7 @@ void listar(void)
 
 		if (feof(s))
 		{
-			printf ("\n%s", p.nome, p.fone);
+			printf("\n%s %s", p.nome, p.fone);
 			break;
 		}
 	}
@@ -135,7 +135,8 @@ void consultar(void)
 		exit (3);
 	}
 	printf ("\nNome: ");
-	gets(n);
+	fgets(n, sizeof(n), stdin);
+
 
 	while (1)
 	{
@@ -186,7 +187,7 @@ void excluir (void)
 		}
 		
 		printf("\nNome: ");
-		gets (n);
+		fgets(n, sizeof(n), stdin);
 		
 		while(1)
 		{

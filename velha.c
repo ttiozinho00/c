@@ -1,32 +1,32 @@
-/*Forma de compila no cmd*/
-/*-std=c99 -std=gnu99 -std=c11
-* use esse comando para compilar corretamente
-*/
-
-/*-Wall  -pedantic -Wextra -sdt=c99
-* esse comando para correção geral do codigo
-*/
-
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
+
+#ifdef _WIN32
 #include <conio.h>
+#define CLEAR_SCREEN "cls"
+#elif __linux__
+#include <stdio_ext.h>
+#include <termios.h>
+#define CLEAR_SCREEN "clear"
+#endif
+
 #include <locale.h>
 
 char grade[10];
 
-int verificaPosi(int nRec)
+int verificaPosi(int nRec) 
 {
-    while(nRec<0 || nRec>8)
+    while (nRec < 0 || nRec > 8) 
     {
-        printf("\n\n\tPosição invalida: ");
-        scanf("%d",&nRec);
+        printf("\n\n\tPosição inválida: ");
+        scanf("%d", &nRec);
         nRec--;
 
-    	while(grade[nRec] == 88 || grade[nRec] == 79)
-    	{     
-        	printf("\n\n\tPosição já marcada:\n");
-            scanf("%d",&nRec);
-            nRec--;               
+        while (grade[nRec] == 'X' || grade[nRec] == 'O') 
+        {
+            printf("\n\n\tPosição já marcada:\n");
+            scanf("%d", &nRec);
+            nRec--;
         }
     }
     return nRec;
@@ -34,146 +34,122 @@ int verificaPosi(int nRec)
 
 void tela()
 {
-	printf("\n\t\t\t   %c | %c | %c ",grade[0],grade[1],grade[2]);
+    printf("\n\t\t\t   %c | %c | %c ", grade[0], grade[1], grade[2]);
     printf("\n\t\t\t --------------");
-    printf("\n\t\t\t   %c | %c | %c ",grade[3],grade[4],grade[5]);
+    printf("\n\t\t\t   %c | %c | %c ", grade[3], grade[4], grade[5]);
     printf("\n\t\t\t --------------");
-    printf("\n\t\t\t   %c | %c | %c ",grade[6],grade[7],grade[8]);
+    printf("\n\t\t\t   %c | %c | %c ", grade[6], grade[7], grade[8]);
 }
 
-void jogador1()
+void jogador1() 
 {
     int num;
 
     printf("\n\n\n Jogador 1 -- X -- : ");
-	scanf("%d",&num);
+    scanf("%d", &num);
 
-	num--;
-	grade[verificaPosi(num)]=88;
+    num--;
+    grade[verificaPosi(num)] = 'X';
 }
 
-void jogador2()
+void jogador2() 
 {
     int num;
     printf("\n\n\n Jogador 2 -- O -- : ");
-	scanf("%d",&num);
+    scanf("%d", &num);
 
-	num--;
-	grade[verificaPosi(num)]=79;
+    num--;
+    grade[verificaPosi(num)] = 'O';
 }
-
 
 char venc()
 {
-    char g1;
-    char g2;
-    char g3;
-   	int i;
+    int i;
 
-    g1 = 0;
-    g2 = 1;
-    g3 = 2;
-
-    for(i=0;i<3;i++)
-	{
-		if(grade[g1]== grade[g2]&& grade[g1]==grade[g3])
-		{
-			return grade[g1];
-		}
-             
-        else
-        { 
-        	g1=g1+3; 
-        	g2=g2+3; 
-        	g3=g3+3;
-        }
-
-        g1=0;
-        g2=3;
-        g3=6;  
-
-        for(i=0;i<3;i++)
+    for (i = 0; i < 3; i++) 
+    {
+        if (grade[i] == grade[i + 3] && grade[i] == grade[i + 6]) 
         {
-        	if(grade[g1] == grade[g2] && grade[g1] == grade[g3])
-        	{
-        		return grade[g1];
-        	}
+            return grade[i];
+        }
+    }
 
-            else
-            {
-            	g1++; 
-            	g2++; 
-            	g3++;
-            }
-        }
-                                   
-        if(grade[0] == grade[4] && grade[0] == grade[8])
+    for (i = 0; i < 9; i += 3) 
+    {
+        if (grade[i] == grade[i + 1] && grade[i] == grade[i + 2]) 
         {
-        	return grade[0];
+            return grade[i];
         }
-                      
-        if(grade[2] == grade[4] && grade[2] == grade[6])
-        {
-        	return grade[2]; 
-        }     
-	}	
+    }
+
+    if (grade[0] == grade[4] && grade[0] == grade[8]) 
+    {
+        return grade[0];
+    }
+
+    if (grade[2] == grade[4] && grade[2] == grade[6]) 
+    {
+        return grade[2];
+    }
+
+    return 0;
 }
 
-void mensagem(char numJ)
+void mensagem(char numJ) 
 {
-    if(venc()!=0)
+    (void)numJ;
+    if (venc() != 0) 
     {
-		printf("\n\n\n\t\t--- Jogador \"%d\"  ganhou --- \"%c\" ",numJ,venc());
-		getch();
-		exit(0);
-	}	
+        printf("\n\n\n\t\t--- Jogador \"%c\"  ganhou ---", venc());
+        getchar(); // Use getchar() instead of getch()
+        _Exit(0);
+    }
 }
 
-void velha(char nRec)
+void velha(int nRec) 
 {
-    if(nRec<=0 && venc()==0)
+    if (nRec <= 0 && venc() == 0) 
     {
- 		printf("\n\n\n\tDeu Velha!!");
- 		getch();
- 		exit(0);
-	}
+        printf("\n\n\n\tDeu Velha!!");
+        getchar();
+        _Exit(0);
+    }
 }
 
 int main(int argc, char const *argv[])
 {
-	system("cls");
-	setlocale(LC_ALL,"");
+    (void)argv[argc];
+    
+    system(CLEAR_SCREEN);
+    setlocale(LC_ALL, "");
 
-	argc=argc;
-	argv=argv;
+    char cont;
+    int i;
 
-	char cont;
-	int i;
+    cont = 9;
 
-	cont = 9;
-
-    for(int i=0;i<9;++i)
+    for (i = 0; i < 9; ++i) 
     {
-    	grade[i]=i+49;
+        grade[i] = i + '1';
     }
 
-	while(cont)
-	{
-    	system("cls");
-    	tela();
-   		mensagem(2);
-  		velha(cont);
-   		jogador1();
-  		cont--;
+    while (cont) 
+    {
+        system(CLEAR_SCREEN);
+        tela();
+        mensagem('2');
+        velha(cont);
+        jogador1();
+        cont--;
 
-   		system("cls");
-    	tela();
-    	mensagem(1);
-    	velha(cont);  
-     	jogador2();
-     	cont--;    
-    }  
+        system(CLEAR_SCREEN);
+        tela();
+        mensagem('1');
+        velha(cont);
+        jogador2();
+        cont--;
+    }
 
-    getch();
-	return 0;
+    getchar(); // Use getchar() instead of getch()
+    return 0;
 }

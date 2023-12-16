@@ -3,23 +3,30 @@
 
 void imprime_linha()
 {
-	printf("\n--------------------------\n");
+    printf("\n--------------------------\n");
 }
 
 int main(int argc, char const *argv[])
 {
-	system("cls");
+    (void)argv[argc];
 
-	argc=argc;
-	argv=argv;
+    imprime_linha();
 
-	imprime_linha();
+    int *variavel;  
 
-	int variavel = 123;
+    variavel = (int *)malloc(sizeof(int)); 
 
-	variavel = malloc(sizeof(int));
+    if (variavel == NULL)
+    {
+        fprintf(stderr, "Failed to allocate memory\n");
+        return 1;  
+    }
 
-	printf("%d\n",variavel);
+    *variavel = 123; 
 
-	return 0;
+    printf("%d\n", *variavel);
+
+    free(variavel);  
+
+    return 0;
 }

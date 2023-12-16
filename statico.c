@@ -56,7 +56,7 @@ void automaticArrayInit(void)
 
 int main(int argc, char const *argv[])
 {
-	system("cls");
+	system("cls || clear");
 	setlocale(LC_ALL,"");
 
 	argc=argc;

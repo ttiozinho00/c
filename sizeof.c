@@ -3,7 +3,7 @@
 
 int main(int argc, char const *argv[])
 {
-	system("cls");
+	system("cls  || clear");
 
 	argc=argc;
 	argv=argv;

@@ -12,7 +12,7 @@ typedef struct arvore
     int freq;
     struct arvore *dir;
     struct arvore *esq;
-}No;
+} No;
 
 No *inserir(No **Raiz, int numero);
 void listarpornivel(No **Raiz, int nivel);
@@ -31,184 +31,171 @@ void ValidarArvoreDir(No *Raiz);
 
 void limpastring(char stringtext[]);
 
-int main(int argc, char const *argv[])
+int main(void)
 {
     system("cls");
-
-    argc=argc;
-    argv=argv;
-
 
     No *lista = NULL, *listaux = NULL;
 
     char entrada[31];
     char aux[31];
     int dado;
-    int *i;
-    int *j;
 
-    dado = 0;
-    i = 0;
-    j = 0;
-
-    while(entrada[0] != 'e')
+    while (strcmp(entrada, "e") != 0)
     {
 
         fflush(stdin);
-        gets(entrada);
+        fgets(entrada, sizeof(entrada), stdin);
         limpastring(aux);
 
-        switch(entrada[0])
+        switch (entrada[0])
         {
 
-            case 'i':
+        case 'i':
+        {
+
+            while (strcmp(entrada, "{FONTE}") == 0)
             {
-               
-                while(entrada == "{FONTE}")
-                {
-                    aux == entrada;
-                    j++; 
-                    i++;
-                }
-
-                aux != "{FONTE}";
-                dado = atoi(aux);
-                listaux = (consulta_nodo(lista,dado));
-
-                if((consulta_nodo(lista,dado)) ==  NULL)
-                {
-                    inserir(&lista,dado);
-                }
+                strcpy(aux, entrada);
+                fgets(entrada, sizeof(entrada), stdin);
             }
-            break;
 
-            case 'c':
+            strcpy(aux, "{FONTE}");
+            dado = atoi(aux);
+            listaux = consulta_nodo(lista, dado);
+
+            if ((consulta_nodo(lista, dado)) == NULL)
             {
-
-                while(entrada != "{FONTE}")
-                {
-                    aux == entrada;
-                    j++; 
-                    i++;
-                }
-
-                aux != "{FONTE}";
-                dado = atoi(aux);
-                listaux = consulta_nodo(lista,dado);
-
-                if((consulta_nodo(lista,dado)) == NULL)
-                {
-                    printf("nao existe no com chave: %d\n",dado);
-                }
-
-                else
-                {
-                    listaux->freq++;
-                    printf("existe no com chave: %d\n",listaux->numero);
-                }
+                inserir(&lista, dado);
             }
-            break;
+        }
+        break;
 
-            case 'p':
+        case 'c':
+        {
+
+            while (strcmp(entrada, "{FONTE}") != 0)
+            {
+                strcpy(aux, entrada);
+                fgets(entrada, sizeof(entrada), stdin);
+            }
+
+            strcpy(aux, "{FONTE}");
+            dado = atoi(aux);
+            listaux = consulta_nodo(lista, dado);
+
+            if ((consulta_nodo(lista, dado)) == NULL)
+            {
+                printf("nao existe no com chave: %d\n", dado);
+            }
+
+            else
+            {
+                listaux->freq++;
+                printf("existe no com chave: %d\n", listaux->numero);
+            }
+        }
+        break;
+
+        case 'p':
 
             switch (entrada[op2])
             {
 
-                case 'c':OrdemCrescente(lista);
+            case 'c':
+                OrdemCrescente(lista);
                 break;
 
-                case 'd':OrdemDecrescente(lista);
+            case 'd':
+                OrdemDecrescente(lista);
                 break;
 
-                default:
+            default:
                 break;
             }
 
             printf("\n");
             break;
 
-            case 'd':
+        case 'd':
 
             imprimeArvore(lista);
             break;
 
-            case 'f':
+        case 'f':
+        {
+
+            while (strcmp(entrada, "{FONTE}") != 0)
             {
-
-                while(entrada != "{FONTE}")
-                {
-                    aux == entrada;
-                    j++; 
-                    i++;
-                }
-
-                aux == "{FONTE}";
-                dado = atoi(aux);
-                listaux = consulta_nodo(lista,dado);
-
-                if(listaux != NULL)
-                {
-                    printf("%d\n",listaux->freq);
-                }
-
-                else
-                {
-                    printf("\n");
-                }
+                strcpy(aux, entrada);
+                fgets(entrada, sizeof(entrada), stdin);
             }
-            break;
 
-            case 'n':
+            strcpy(aux, "{FONTE}");
+            dado = atoi(aux);
+            listaux = consulta_nodo(lista, dado);
+
+            if (listaux != NULL)
             {
-
-                while(entrada != "{FONTE}")
-                {
-                    aux == entrada;
-                    j++; 
-                    i++;
-                }
-
-                aux == "{FONTE}";
-                dado = atoi(aux);
-
-                if(dado >= 1)
-                {
-                    listarpornivel(&lista,dado);
-                }
-
-                else
-                {
-                    printf("\n");
-                }
+                printf("%d\n", listaux->freq);
             }
-            break;
 
-            case 'k':
+            else
             {
-
-                while(entrada != "{FONTE}")
-                {
-                    aux == entrada;
-                    j++; 
-                    i++;
-                }
-
-                aux == "{FONTE}";
-                dado = atoi(aux);
-
-                if(dado >= 1)
-                {
-                    imprimeFreqc(lista,dado);
-                }
-
-                else
-                {
-                    printf("\n");
-                }
+                printf("\n");
             }
-            break;
+        }
+        break;
 
-            default:
+        case 'n':
+        {
+
+            while (strcmp(entrada, "{FONTE}") != 0)
+            {
+                strcpy(aux, entrada);
+                fgets(entrada, sizeof(entrada), stdin);
+            }
+
+            strcpy(aux, "{FONTE}");
+            dado = atoi(aux);
+
+            if (dado >= 1)
+            {
+                listarpornivel(&lista, dado);
+            }
+
+            else
+            {
+                printf("\n");
+            }
+        }
+        break;
+
+        case 'k':
+        {
+
+            while (strcmp(entrada, "{FONTE}") != 0)
+            {
+                strcpy(aux, entrada);
+                fgets(entrada, sizeof(entrada), stdin);
+            }
+
+            strcpy(aux, "{FONTE}");
+            dado = atoi(aux);
+
+            if (dado >= 1)
+            {
+                imprimeFreqc(lista, dado);
+            }
+
+            else
+            {
+                printf("\n");
+            }
+        }
+        break;
+
+        default:
             break;
             printf("\n");
         }
@@ -216,23 +203,22 @@ int main(int argc, char const *argv[])
     return 0;
 }
 
-
 void limpastring(char stringtext[])
 {
     int value = (strlen(stringtext));
     int i;
 
-    for(i = 0; i < value; i++)
+    for (i = 0; i < value; i++)
     {
-        stringtext = "{FONTE}";
+        stringtext[i] = '\0';
     }
 }
 
 No *inserir(No **Raiz, int numero)
 {
-    if(*Raiz == NULL)
+    if (*Raiz == NULL)
     {
-        *Raiz = (No *) malloc(sizeof(No));
+        *Raiz = (No *)malloc(sizeof(No));
         (*Raiz)->esq = NULL;
         (*Raiz)->dir = NULL;
         (*Raiz)->numero = numero;
@@ -242,7 +228,7 @@ No *inserir(No **Raiz, int numero)
 
     else
     {
-        if(numero < (*Raiz)->numero)
+        if (numero < (*Raiz)->numero)
         {
             return inserir(&(*Raiz)->esq, numero);
         }
@@ -262,53 +248,52 @@ No *consulta_nodo(No *Raiz, int numero)
         return NULL;
     }
 
-    if(Raiz->numero == numero)
+    if (Raiz->numero == numero)
     {
         return Raiz;
     }
 
-    if(numero < Raiz->numero)
+    if (numero < Raiz->numero)
     {
-        return consulta_nodo(Raiz->esq,numero);
+        return consulta_nodo(Raiz->esq, numero);
     }
 
     else
     {
-        return consulta_nodo(Raiz->dir,numero);
+        return consulta_nodo(Raiz->dir, numero);
     }
 }
 
-
 void OrdemCrescente(No *Raiz)
 {
-    if(Raiz != NULL)
+    if (Raiz != NULL)
     {
         OrdemCrescente(Raiz->esq);
-        printf("\n%d %d",Raiz->numero,Raiz->freq);
+        printf("\n%d %d", Raiz->numero, Raiz->freq);
         OrdemCrescente(Raiz->dir);
     }
 }
 
 void OrdemDecrescente(No *Raiz)
 {
-    if(Raiz != NULL)
+    if (Raiz != NULL)
     {
         OrdemDecrescente(Raiz->dir);
-        printf("\n%d %d",Raiz->numero,Raiz->freq);
+        printf("\n%d %d", Raiz->numero, Raiz->freq);
         OrdemDecrescente(Raiz->esq);
     }
 }
 
 void imprimeArvore(No *Raiz)
 {
-    if(Raiz != NULL)
+    if (Raiz != NULL)
     {
         imprimeArvore(Raiz->esq);
-        printf("\nchave: %d",Raiz->numero);
+        printf("\nchave: %d", Raiz->numero);
 
-        if(Raiz->esq != NULL )
+        if (Raiz->esq != NULL)
         {
-            printf(" filho esquerdo: %d",Raiz->esq->numero);
+            printf(" filho esquerdo: %d", Raiz->esq->numero);
         }
 
         else
@@ -316,85 +301,59 @@ void imprimeArvore(No *Raiz)
             printf(" filho esquerdo: nil");
         }
 
-        if(Raiz->dir != NULL )
+        if (Raiz->dir != NULL)
         {
-            printf(" filho direito: %d\n",Raiz->dir->numero);
+            printf(" filho direito: %d\n", Raiz->dir->numero);
         }
 
         else
         {
             printf(" filho direito: nil\n");
-            imprimeArvore(Raiz->dir);
         }
+        imprimeArvore(Raiz->dir);
     }
 }
 
-
-void listarpornivel(No **Raiz, int nivel){
-   // printf("ok");
-    if ((nivel == 1)&&(*Raiz !=NULL))
-    {
-       // printf("ok");
-        printf("%d %d\n",(*Raiz)->numero, (*Raiz)->freq);
-    }
-
-    else
-    {
-        if ((*Raiz)->esq != NULL)
-        {
-            listarpornivel(&(*Raiz)->esq ,nivel-1);
-        }
-
-        if ((*Raiz)->dir != NULL)
-        {
-            listarpornivel(&(*Raiz)->dir ,nivel - 1);
-        }
-    }
-}
-
-
-void listarpornivel2(No **Raiz, int nivel)
+void listarpornivel(No **Raiz, int nivel)
 {
-    if ((nivel == 1)&&(*Raiz !=NULL))
+    if ((nivel == 1) && (*Raiz != NULL))
     {
-        imprimeArvore2((*Raiz));
+        printf("%d %d\n", (*Raiz)->numero, (*Raiz)->freq);
     }
 
     else
     {
         if ((*Raiz)->esq != NULL)
         {
-            listarpornivel2(&(*Raiz)->esq ,nivel-1);
+            listarpornivel(&(*Raiz)->esq, nivel - 1);
         }
 
         if ((*Raiz)->dir != NULL)
         {
-            listarpornivel2(&(*Raiz)->dir ,nivel - 1);
+            listarpornivel(&(*Raiz)->dir, nivel - 1);
         }
     }
 }
-
 
 void imprimeArvore2(No *Raiz)
 {
-    if(Raiz != NULL)
+    if (Raiz != NULL)
     {
         imprimeArvore2(Raiz->esq);
-        printf("\nchave: %d",Raiz->numero);
+        printf("\nchave: %d", Raiz->numero);
         imprimeArvore2(Raiz->dir);
-   }
+    }
 }
-
 
 void imprimeFreqc(No *Raiz, int k)
 {
-    if(Raiz != NULL)
+    if (Raiz != NULL)
     {
         imprimeFreqc(Raiz->esq, k);
 
-        if(Raiz->freq == k || Raiz->freq > k)
+        if (Raiz->freq == k || Raiz->freq > k)
         {
-            printf("\n%d",Raiz->numero);
+            printf("\n%d", Raiz->numero);
             imprimeFreqc(Raiz->dir, k);
         }
     }
@@ -406,15 +365,18 @@ void ValidarArvoreEsq(No *Raiz)
     int tpnum;
 
     tpfreq = 0;
-    tpnum =0;
+    tpnum = 0;
 
-    if(Raiz != NULL)
+    if (Raiz != NULL)
     {
-        if(Raiz->freq < Raiz->esq->freq)
+        if (Raiz->esq != NULL && Raiz->freq < Raiz->esq->freq)
         {
-            tpnum = Raiz->numero; tpfreq = Raiz->freq;
-            Raiz->numero = Raiz->esq->numero; Raiz->freq = Raiz->esq->freq;
-            Raiz->esq->numero = tpnum;  Raiz->esq->freq = tpfreq;
+            tpnum = Raiz->numero;
+            tpfreq = Raiz->freq;
+            Raiz->numero = Raiz->esq->numero;
+            Raiz->freq = Raiz->esq->freq;
+            Raiz->esq->numero = tpnum;
+            Raiz->esq->freq = tpfreq;
         }
 
         else
@@ -424,30 +386,29 @@ void ValidarArvoreEsq(No *Raiz)
     }
 }
 
-
 void ValidarArvoreDir(No *Raiz)
 {
     int tpfreq;
     int tpnum;
 
-    tpfreq=0;
-    tpnum =0;
+    tpfreq = 0;
+    tpnum = 0;
 
-    if(Raiz != NULL)
+    if (Raiz != NULL)
     {
-        printf("ok");
-
-        if(Raiz->freq < Raiz->dir->freq)
+        if (Raiz->dir != NULL && Raiz->freq < Raiz->dir->freq)
         {
-            tpnum = Raiz->numero; tpfreq = Raiz->freq;
-            Raiz->numero = Raiz->dir->numero; Raiz->freq = Raiz->dir->freq;
-            Raiz->dir->numero = tpnum;  Raiz->dir->freq = tpfreq;
+            tpnum = Raiz->numero;
+            tpfreq = Raiz->freq;
+            Raiz->numero = Raiz->dir->numero;
+            Raiz->freq = Raiz->dir->freq;
+            Raiz->dir->numero = tpnum;
+            Raiz->dir->freq = tpfreq;
         }
 
         else
         {
-            printf("ok");
-            ValidarArvoreDir(Raiz->dir);        
+            ValidarArvoreDir(Raiz->dir);
         }
     }
 }

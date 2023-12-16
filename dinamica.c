@@ -5,31 +5,28 @@
 
 int main(int argc, char const *argv[])
 {
-	system("cls");
-	setlocale(LC_ALL,"");
+    system("cls");
+    setlocale(LC_ALL, "");
 
-	argc=argc;
-	argv=argv;
+    argc = argc;
+    argv = argv;
 
-	int *ptr_a;
-	int pt_a;
+    int *pt_a;  
 
+    pt_a = (int*)malloc(sizeof(int));
 
+    if (pt_a == NULL)
+    {
+        printf("Memória insuficiente!\n");
+        exit(1);
+    }
 
-	pt_a = malloc(sizeof(int));
+    printf("Endereço de pt_a: %p\n", (void*)pt_a); 
 
-	if (pt_a == NULL)
-	{
-		printf("Memória insuficiente!\n");
-    	exit(1);
-	}
+    *pt_a = 90;
 
-	printf("Endereço de ptr_a: %d \n",  pt_a);
+    printf("Conteúdo de pt_a: %d\n", *pt_a);
+    free(pt_a);
 
-  	*ptr_a = 90;
-
-  	printf("Conteúdo de ptr_a: %d\n", *ptr_a);  
-  	free(ptr_a);
-
-	return 0;
+    return 0;
 }

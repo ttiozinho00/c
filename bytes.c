@@ -19,8 +19,8 @@ int main(int argc, char const *argv[])
 
 	float array[20];
 
-	printf("O número de bytes no array é %d\n", sizeof(array));
-	printf("O número de bytes retornados por getSize é %d\n", getSize(array));
+	printf("O número de bytes no array é %ld\n", sizeof(array));
+	printf("O número de bytes retornados por getSize é %ld\n", getSize(array));
 
 	return 0;
 }

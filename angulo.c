@@ -1,6 +1,5 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include <conio.h>
 #include <math.h>
 
 int calc(float n1, float n2)
@@ -14,7 +13,6 @@ int calc(float n1, float n2)
 
 int main(int argc, char const *argv[])
 {
-	system("cls");
 
 	argv=argv;
 	argc=argc;
@@ -34,6 +32,6 @@ int main(int argc, char const *argv[])
 	printf("\n");
 	printf("%.f\n",result);
 
-	getch();
+	getchar();
 	return 0;
 }

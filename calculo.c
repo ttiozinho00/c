@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <conio.h>
+//#include <conio.h>
 #include <math.h>
 
 int calculo(int n1, int n2)
@@ -32,6 +32,6 @@ int main(int argc, char const *argv[])
 
   	printf("Resultado = %d\n", resultado);
 
-  	getch();
+  	getchar();
 	return 0;
 }

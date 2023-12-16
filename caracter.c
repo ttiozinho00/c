@@ -5,36 +5,31 @@ int string_count(char str[]);
 
 int string_count(char str[]) 
 {
-    int i;
-    int j;
+    int i = 0;
 
-    i = 0;
-    j = 0;
-
-    while(str[i] = str[j])
+    while (str[i] != '\0') 
     {
-    	return i;
+        i++;
     }
+
+    return i;
 }
 
-int main(int argc, char const *argv[])
+int main()
 {
-	system("cls");
+    system("cls");
 
-	argc=argc;
-	argv=argv;
+    char str[100];
+    int contador;
 
-	char str[100];
- 	int contador;
-  
- 	printf("Digite uma palavra: ");
- 	gets(str);
-  
- 	contador = string_count(str);
-  
- 	printf("A string possui %d caracteres.n", contador);
-  
- 	system("pause");
- 	return 0;
+    printf("Digite uma palavra: ");
+    fgets(str, sizeof(str), stdin);
+
+
+    contador = string_count(str);
+
+    printf("A string possui %d caracteres.\n", contador);
+
+    system("pause");
+    return 0;
 }
- 
