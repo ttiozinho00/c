@@ -569,11 +569,17 @@ void fantasma_nav(int nav, int pos_i, int pos_j, int ia, int tam_i, int tam_j)
 			case 0:
 			case 1:
 			case 2:
-				if(player.pos_i < fantasma[nav].pos_i){
-					if(mapa.vet_mapa[pos_i-1][pos_j] != '|'){
+				if(player.pos_i < fantasma[nav].pos_i)
+				{
+					if(mapa.vet_mapa[pos_i-1][pos_j] != '|')
+					{
 						fantasma[nav].pos_i--;
-					} else {
-						switch(rand() % 2){
+					} 
+
+					else 
+					{
+						switch(rand() % 2)
+						{
 							case 0:
 								fantasma[nav].pos_j--;
 								break;
@@ -581,11 +587,17 @@ void fantasma_nav(int nav, int pos_i, int pos_j, int ia, int tam_i, int tam_j)
 								fantasma[nav].pos_j++;
 						}
 					}
-				} else if(player.pos_j < fantasma[nav].pos_j){
-					if(mapa.vet_mapa[pos_i][pos_j-1] != '|'){
+				} 
+				else if(player.pos_j < fantasma[nav].pos_j)
+				{
+					if(mapa.vet_mapa[pos_i][pos_j-1] != '|')
+					{
 						fantasma[nav].pos_j--;
-					} else {
-						switch(rand() % 2){
+					} 
+					else 
+					{
+						switch(rand() % 2)
+						{
 							case 0:
 								fantasma[nav].pos_i--;
 								break;
@@ -593,11 +605,18 @@ void fantasma_nav(int nav, int pos_i, int pos_j, int ia, int tam_i, int tam_j)
 								fantasma[nav].pos_i++;
 						}
 					}
-				} else if(player.pos_i > fantasma[nav].pos_i){
-					if(mapa.vet_mapa[pos_i+1][pos_j] != '|'){
+				} 
+				else if(player.pos_i > fantasma[nav].pos_i)
+				{
+					if(mapa.vet_mapa[pos_i+1][pos_j] != '|')
+					{
 						fantasma[nav].pos_i++;
-					} else {
-						switch(rand() % 2){
+					}
+
+					else 
+					{
+						switch(rand() % 2)
+						{
 							case 0:
 								fantasma[nav].pos_j--;
 								break;
@@ -605,7 +624,8 @@ void fantasma_nav(int nav, int pos_i, int pos_j, int ia, int tam_i, int tam_j)
 								fantasma[nav].pos_j++;
 						}
 					}
-				} else if(player.pos_j > fantasma[nav].pos_j){
+				} 
+				else if(player.pos_j > fantasma[nav].pos_j){
 					if(mapa.vet_mapa[pos_i][pos_j+1] != '|'){
 						fantasma[nav].pos_j++;	
 					} else {
